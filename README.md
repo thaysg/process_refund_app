@@ -89,7 +89,11 @@ flutter run
 
 #### Apontando o app para a API local
 
-- **Emulador Android:** usar `http://10.0.2.2:5000` (padrão).
+- **Emulador Android (AVD padrão):** usar `http://10.0.2.2:5000` (padrão).
+- **Emulador Genymotion:** o loopback do host é `10.0.3.2`:
+  ```bash
+  flutter run --dart-define=API_BASE_URL=http://10.0.3.2:5000
+  ```
 - **Dispositivo físico:** usar o IP da máquina na rede local, por exemplo:
   ```bash
   flutter run --dart-define=API_BASE_URL=http://192.168.1.50:5000
@@ -263,7 +267,7 @@ Exemplo (`samples/sample-expected.csv`, data de referência `2024-05-01`) corres
 - **Persistência/banco de dados:** processamento em memória por lote, conforme especificado.
 - **Paginação:** não exigida para o lote processado.
 - **Exportação/compartilhamento de CSV no app:** não implementado na UI. A API oferece saída em CSV (`?format=csv` / `Accept: text/csv`), mas não há ação dedicada de exportação/compartilhamento no aplicativo.
-- **Execução end-to-end em emulador/dispositivo Android:** **não validada** nesta entrega (depende de ambiente Android/emulador totalmente provisionado). O comportamento do app foi validado por `flutter analyze` e `flutter test`; o backend foi validado por `dotnet build -warnaserror` e `dotnet test`.
+- **Execução end-to-end em emulador/dispositivo Android:** validada manualmente com a API local rodando: (1) emulador Genymotion (`API_BASE_URL=http://10.0.3.2:5000`) e (2) dispositivo físico Android na mesma rede Wi-Fi (`API_BASE_URL=http://<IP da máquina>:5000`). Fluxo verificado: importar `samples/sample.csv`, processar, ver resumo e lista de resultados e filtrar por status. Não foi testado em um AVD do Android Studio nem em builds de release.
 
 ## Como validar a entrega
 
@@ -293,7 +297,8 @@ unzip -l reimbursement-solution.zip | tail -1                                   
 
 ## Uso de IA
 
-- **OpenCode (agente de programação com IA):** gerou e aplicou o código nesta iteração e nas anteriores (núcleo, API, CLI, app Flutter, testes e ajustes).
-- **Claude:** revisou a solução entregue em relação ao enunciado, executou/definiu casos de borda e escreveu as listas de correções (prompts) que o OpenCode aplicou. Não foram realizadas ações além do que está descrito nesta seção.
+- **OpenCode (agente de programação), modelo Big Pickle:** gerou e aplicou o código do projeto (núcleo, API, CLI, app Flutter, testes e ajustes) a partir de prompts escritos por mim.
+- **Claude (Anthropic):** usado como revisor. Comparou a solução com o enunciado, executou casos de borda e escreveu as listas de correções (prompts) que o OpenCode aplicou. Um rascunho inicial de backend escrito pelo Claude foi descartado e não faz parte da entrega.
+- **Validação:** executei `dotnet build`, `dotnet test`, `flutter analyze` e `flutter test`, e testei o app em um emulador Genymotion e em um dispositivo físico Android. Revisei as decisões de regra de negócio descritas neste README.
 
 As decisões e o código foram alinhados aos requisitos do desafio.
