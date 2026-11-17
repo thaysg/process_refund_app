@@ -1,0 +1,42 @@
+# .NET
+**/bin/
+**/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+.idea/
+.gradle/
+TestResults/
+coverage/
+*.trx
+
+# Flutter / Dart
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/.packages
+mobile/build/
+mobile/.pub-cache/
+mobile/.pub/
+**/Flutter/ephemeral/
+**/flutter_export_environment.sh
+
+# IDE
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node/other
+node_modules/
+dist/
+
+# Android/local
+local.properties
+
+# Delivery artifacts
+*.zip

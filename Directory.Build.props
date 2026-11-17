@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup Condition="'$(MSBuildProjectDirectory)' != '' and $([System.String]::Copy('$(MSBuildProjectDirectory)').Replace('\','/').Contains('/src/'))">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+</Project>

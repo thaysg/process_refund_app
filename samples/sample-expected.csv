@@ -1,0 +1,5 @@
+Id,TipoProcedimento,DataProcedimento,ValorPago,ValorReembolsado,ClienteId,Status
+1,Consulta Médica,2024-02-10,400,320,123,Aprovado
+2,Exame de Imagem,2024-03-01,600,500,124,Aprovado
+3,Exame Laboratorial,2024-04-15,200,140,125,Aprovado
+4,Outros,2024-01-20,150,75,126,Rejeitado
